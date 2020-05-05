@@ -12,7 +12,7 @@ public class MapImpl {
     }
 
 
-    public void add(Integer key, String value){ //No estoy seguro si se refiere a add con el obtener
+    public void add(Integer key, String value){ 
         map.put(key, value);
     }
     public void delete(Integer key){
@@ -47,7 +47,4 @@ public class MapImpl {
             set=((TreeSet) set).descendingSet();
         }
     }
-    /* realizar las operaciones básicas en cada una (obtener, eliminar, leer e imprimir, iterar sobre la colección  e imprimir todos sus
-        elementos uno a uno (iterar de 2 formas diferentes al menos)). También ordenar e invertir el orden de los elementos en la/s colección/es que sea posible.
-     */
 }

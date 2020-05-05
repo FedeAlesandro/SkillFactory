@@ -11,7 +11,7 @@ public class SetImpl {
         this.set = set;
     }
 
-    public void add(Integer number){ //No estoy seguro si se refiere a add con el obtener
+    public void add(Integer number){ 
         set.add(number);
     }
     public void delete(Integer number){

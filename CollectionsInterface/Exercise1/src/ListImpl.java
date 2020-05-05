@@ -13,7 +13,7 @@ public class ListImpl {
         this.list = list;
     }
 
-    public void add(Integer number){ //No estoy seguro si se refiere a add con el obtener
+    public void add(Integer number){
         list.add(number);
     }
     public void delete(Integer number){
