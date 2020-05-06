@@ -47,4 +47,9 @@ public class MapImpl {
             set=((TreeSet) set).descendingSet();
         }
     }
+
+    @Override
+    public String toString() {
+        return this.map.toString();
+    }
 }
