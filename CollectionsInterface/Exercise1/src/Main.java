@@ -3,7 +3,7 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-
+        /*
         ListImpl list = new ListImpl(new ArrayList());
 
         list.add(1);
@@ -36,6 +36,42 @@ public class Main {
 
         list.reverseSort();
         System.out.println("List reverse sorted: ");
-        list.printAll();
+        list.printAll(); */
+
+        SetImpl set = new SetImpl(new HashSet());
+        set.add(1);
+        set.add(2);
+        set.add(3);
+        set.add(4);
+
+        System.out.println("Si contiene el valor 4 pasado por parámetro");
+        System.out.println(set.ifContains(4));
+        System.out.println("Si contiene el valor 5 pasado por parámetro");
+        System.out.println(set.ifContains(5));
+
+        System.out.println("Imprime todo el set");
+        set.printAll();
+
+        System.out.println("Print de un valor pasado por parámetro");
+        set.print(2);
+
+        System.out.println("Valor eliminado del set, impreso cada valor del set con un foreach");
+        set.delete(2);
+        set.printAllForEach();
+
+        System.out.println("Leo un valor y lo retorno si es que está, sino retorno null");
+        int numb = set.read(4);
+        System.out.println(numb);
+
+        System.out.println("Leo todo el set y lo retorno");
+        Set set1 = set.readAll();
+        System.out.println(set1);
+
+        System.out.println("Creo un SetImpl y el set retornado lo paso a TreeSet en el parametro del constructor para poder ordenarlo en orden reverso");
+        SetImpl treeSet = new SetImpl(new TreeSet(set1));
+        treeSet.printAll();
+        treeSet.reverseOrder();
+        System.out.println("Ordenado en forma reversa e impreso con un iterator");
+        treeSet.printAllIterator();
     }
 }
