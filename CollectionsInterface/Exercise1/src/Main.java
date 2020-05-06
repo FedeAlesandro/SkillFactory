@@ -3,9 +3,8 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        /*
-        ListImpl list = new ListImpl(new ArrayList());
 
+        ListImpl list = new ListImpl(new ArrayList());
         list.add(1);
         list.add(2);
         list.add(4);
@@ -36,7 +35,7 @@ public class Main {
 
         list.reverseSort();
         System.out.println("List reverse sorted: ");
-        list.printAll(); */
+        list.printAll();
 
         SetImpl set = new SetImpl(new HashSet());
         set.add(1);
@@ -73,5 +72,30 @@ public class Main {
         treeSet.reverseOrder();
         System.out.println("Ordenado en forma reversa e impreso con un iterator");
         treeSet.printAllIterator();
+
+        MapImpl map = new MapImpl(new HashMap());
+        map.add(1, "Fede");
+        map.add(2, "Pepe");
+        map.add(3, "Edu");
+
+        System.out.println("Todo el mapa impreso");
+        map.printAll();
+
+        System.out.println("Elimino el valor con key 2");
+        map.delete(2);
+
+        System.out.println("Imprimo el valor con key 3");
+        map.print(3);
+
+        System.out.println("Leo el valor que retorna la key 1");
+        String value = map.read(1);
+        System.out.println(value);
+
+        System.out.println("Retorno todo el mapa e imprimo la copia con un iterator");
+        Map map1 = map.readAll();
+        map.printAllIterator();
+
+        System.out.println("Imprimo el mapa original con un foreach");
+        map.printAllForEach();
     }
 }
