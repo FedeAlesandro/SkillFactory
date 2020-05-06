@@ -12,9 +12,7 @@ public class SetImpl {
     }
 
     public void add(Integer number){
-        System.out.println("ENTRA AL ADD");
         set.add(number);
-        System.out.println(set);
     }
     public void delete(Integer number){
         set.remove(number);
@@ -22,13 +20,20 @@ public class SetImpl {
     public boolean ifContains (Integer number){
         return set.contains(number);
     }
+    public Integer read(Integer number){
+        if (set.contains(number))
+            return number;
+        else
+            return null;
+    }
     public Set readAll(){
         return set;
     }
     public void print(Integer number){
         if(set.contains(number)){
             System.out.println(number);
-        }
+        }else
+            System.out.println("El valor pasado por parámetro no está");
     }
     public void printAll(){
         System.out.println(set);
@@ -44,7 +49,7 @@ public class SetImpl {
             System.out.println(number);
         }
     }
-    public void reverseOrder(Set set){
+    public void reverseOrder(){
         if(set instanceof TreeSet){
             set=((TreeSet) set).descendingSet();
         }
