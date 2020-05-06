@@ -48,4 +48,9 @@ public class ListImpl {
     public void reverseSort(){
         Collections.reverse(list);
     }
+
+    @Override
+    public String toString() {
+        return this.list.toString();
+    }
 }

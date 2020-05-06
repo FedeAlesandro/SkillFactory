@@ -11,8 +11,10 @@ public class SetImpl {
         this.set = set;
     }
 
-    public void add(Integer number){ 
+    public void add(Integer number){
+        System.out.println("ENTRA AL ADD");
         set.add(number);
+        System.out.println(set);
     }
     public void delete(Integer number){
         set.remove(number);
@@ -46,5 +48,10 @@ public class SetImpl {
         if(set instanceof TreeSet){
             set=((TreeSet) set).descendingSet();
         }
+    }
+
+    @Override
+    public String toString() {
+        return this.set.toString();
     }
 }
