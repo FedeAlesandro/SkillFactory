@@ -11,8 +11,7 @@ public class MapImpl {
         this.map = new HashMap<>();
     }
 
-
-    public void add(Integer key, String value){ 
+    public void add(Integer key, String value){
         map.put(key, value);
     }
     public void delete(Integer key){
@@ -40,11 +39,6 @@ public class MapImpl {
     public void printAllForEach(){
         for(Map.Entry<Integer, String> entry : map.entrySet()){
             System.out.println("Key: " + entry.getKey() + ", value: " + entry.getValue());
-        }
-    }
-    public void reverseOrder(Set set){
-        if(set instanceof TreeSet){
-            set=((TreeSet) set).descendingSet();
         }
     }
 
