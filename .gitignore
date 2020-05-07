@@ -1,5 +1,5 @@
 
-# Created by https://www.gitignore.io/api/java,gradle,maven,eclipse,intellij
+# Created by https://www.gitignore.io/api/java,gradle,maven,eclipse,intellij 
 # Edit at https://www.gitignore.io/?templates=java,gradle,maven,eclipse,intellij
 
 ### Eclipse ###
@@ -21,7 +21,7 @@ local.properties
 # Locally stored "Eclipse launch configurations"
 *.launch
 
-# PyDev specific (Python IDE for Eclipse)
+# PyDev specific (Python IDE for Eclipse) a
 *.pydevproject
 
 # CDT-specific (C/C++ Development Tooling)
