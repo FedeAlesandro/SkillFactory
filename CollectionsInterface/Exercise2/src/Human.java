@@ -9,6 +9,14 @@ public class Human implements  ISprintable{
     }
 
     @Override
+    public String toString() {
+        return "Human{" +
+                "name='" + name + '\'' +
+                ", speed=" + speed +
+                '}';
+    }
+
+    @Override
     public Double run(Double distance) {
         return distance/speed;
     }

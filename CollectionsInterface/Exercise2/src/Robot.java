@@ -9,6 +9,13 @@ public class Robot implements ISprintable{
     }
 
     @Override
+    public String toString() {
+        return "Robot{" +
+                "name='" + name + '\'' +
+                ", speed=" + speed +
+                '}';
+    }
+    @Override
     public Double run(Double distance) {
         return distance/speed;
     }

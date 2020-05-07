@@ -9,6 +9,13 @@ public class Dog implements ISprintable{
     }
 
     @Override
+    public String toString() {
+        return "Dog{" +
+                "name='" + name + '\'' +
+                ", speed=" + speed +
+                '}';
+    }
+    @Override
     public Double run(Double distance) {
         return distance/speed;
     }
