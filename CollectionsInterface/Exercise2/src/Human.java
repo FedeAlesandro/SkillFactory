@@ -1,4 +1,4 @@
-public class Human implements ISprintable{
+public class Human implements  ISprintable{
 
     private String name;
     private Double speed;
