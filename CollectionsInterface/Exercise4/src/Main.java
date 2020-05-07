@@ -12,7 +12,7 @@ public class Main {
         System.out.println(list);
     }
     public static void main(String[] args) {
-        orderAndPrint(new ArrayList<Integer>(), 4, 3, 5, 6, 1, 2);
-        orderAndPrint(new LinkedList<Integer>(), 4, 3, 5, 6 ,1 ,2);
+        orderAndPrint(new ArrayList<>(), 4, 3, 5, 6, 1, 2);
+        orderAndPrint(new LinkedList<>(), 4, 3, 5, 6 ,1 ,2);
     }
 }
