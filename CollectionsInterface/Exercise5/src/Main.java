@@ -3,18 +3,14 @@ import java.util.List;
 
 public class Main {
 
-    public static void deleteRepeatedCars(ArrayList<Car>cars){
-        ArrayList<Car>aux = new ArrayList<>();
-        while(!cars.isEmpty()){
-            Car value = cars.get(cars.size()-1);
-            while(cars.contains(value)){
-                value = cars.remove(cars.indexOf(value));
-                if(!aux.contains(value)){
-                    aux.add(value);
-                }
+    public static List<Car> deleteRepeatedCars(ArrayList<Car>cars){
+        List<Car>aux = new ArrayList<>();
+        for (Car car: cars) {
+            if(!aux.contains(car)){
+                aux.add(car);
             }
         }
-        cars.addAll(aux);
+		return aux;
     }
     public static void main(String[] args) {
         ArrayList<Car> cars = new ArrayList<>();
@@ -32,7 +28,8 @@ public class Main {
         cars.add(new Car("Fiesta", 50000));
 
         System.out.println(cars);
-        deleteRepeatedCars(cars);
+		cars = deleteRepeatedCars(cars);
         System.out.println(cars);
+);
     }
 }

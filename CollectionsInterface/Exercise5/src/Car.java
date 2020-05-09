@@ -2,7 +2,7 @@ import java.util.Objects;
 
 public class Car {
     private String model;
-    private Integer prize;
+    private BigDecimal prize;
 
     public Car(String model, Integer prize){
         this.model = model;
