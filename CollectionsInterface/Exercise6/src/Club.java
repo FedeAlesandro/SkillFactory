@@ -1,5 +1,10 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -10,8 +15,21 @@ public class Club {
     private Map <UUID, Integer> votes;
     private Map <UUID, ClubMember> members;
 
-    public void makeClubMember(ClubMember member){
+    public Club (){
+        disqualifiedMembers = new HashMap<>();
+        alreadyVoted = new HashMap<>();
+        votes = new HashMap<>();
+        members = new HashMap<>();
+    }
+
+    public void makeClubMember(ClubMember member) throws VotesException {
         members.put(member.getId(), member);
+        List <ClubMember> arrayMembers = new ArrayList<>(members.values());
+        Set <ClubMember> setMembers = new HashSet<>(members.values());
+        if(setMembers.size()!=arrayMembers.size()){
+            members.remove(member.getId(), member);
+            throw new VotesException("This member already exists.");
+        }
     }
     private Boolean isAlreadyVoted (UUID idMemberVoted){
         if(alreadyVoted.get(idMemberVoted)){
@@ -34,8 +52,8 @@ public class Club {
             votes.replace(idVoterMember, votes.get(idVoterMember) - 1);
         }
     }
-    private void addVote(UUID idMemberVoted) throws VotesException {
-        if(this.isAlreadyVoted(idMemberVoted)){
+    private void addVote(UUID idMemberVoted, UUID idVoterMember) throws VotesException {
+        if(this.isAlreadyVoted(idVoterMember)){
             throw new VotesException("The member has already voted, he will be disqualified from being voted");
         }else{
             if(isDisqualified(idMemberVoted)){
@@ -56,7 +74,7 @@ public class Club {
             throw new VotesException("You are not a member of this club!");
         }else{
             if(member.getId()!=idMemberVoted){
-                this.addVote(idMemberVoted);
+                this.addVote(idMemberVoted, member.getId());
                 if(enteredId==null || enteredId!=member.getId()){
                     this.subtractVote(member.getId());
                     throw new VotesException("You will have one less vote because you did not enter your id.");

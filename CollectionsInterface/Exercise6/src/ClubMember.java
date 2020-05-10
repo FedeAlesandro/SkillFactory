@@ -8,6 +8,13 @@ public class ClubMember implements Comparable<ClubMember>{
     private String phone;
     private Integer age;
 
+    public ClubMember(String name, String phone, Integer age){
+        this.name = name;
+        this.id = UUID.randomUUID();
+        this.phone = phone;
+        this.age = age;
+    }
+
     public String getName() {
         return name;
     }
@@ -24,21 +31,20 @@ public class ClubMember implements Comparable<ClubMember>{
         if (!(o instanceof ClubMember)) return false;
         ClubMember that = (ClubMember) o;
         return name.equals(that.name) &&
-                id.equals(that.id) &&
                 phone.equals(that.phone) &&
                 age.equals(that.age);
     }
     @Override
     public int hashCode() {
-        return Objects.hash(name, id, phone, age);
+        return Objects.hash(name, phone, age);
     }
     @Override
     public String toString() {
         return "Club Member: " +
-                "Name= " + name +
-                ", id= " + id +
-                ", phone= " + phone +
-                ", age= " + age;
+                "Name = " + name +
+                ", id = " + id +
+                ", phone = " + phone +
+                ", age = " + age;
     }
     @Override
     public int compareTo(ClubMember o) {
