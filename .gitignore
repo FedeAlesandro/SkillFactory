@@ -244,5 +244,6 @@ gradle-app.setting
 **/build/
 
 ReadMePractice/
+VeterinariaDB/
 
 # End of https://www.gitignore.io/api/java,gradle,maven,eclipse,intellij
