@@ -4,14 +4,10 @@ public class App
 {
     public static void main( String[] args )
     {
-       /* Stack<String>stack = new Stack<>();
-        stack.push("Hello");
-        stack.push("Yes");
-        stack.push("No");
-        stack.push("Bye");
-        System.out.println(stack); */
-        System.out.println(StringsMethods.isPalindrome("Arriba la birra"));
-        System.out.println(StringsMethods.romanNumberToInteger("XXI"));
-        System.out.println(StringsMethods.reorderWords("Aguante Boca Juniors papá"));
+        StringsMethods stringsMethods = new StringsMethods();
+        System.out.println(stringsMethods.isPalindrome("Arriba la birra"));
+        System.out.println(stringsMethods.romanNumberToInteger("XXI"));
+        System.out.println(stringsMethods.reorderWords("Aguante Boca Juniors papá"));
+        System.out.println(stringsMethods.countDiferentCaracters("Soy Independiente, aunque no gano la libertadores\n" + "desde 1985, sigo siendo el máximo campeón con 7 copas"));
     }
 }
