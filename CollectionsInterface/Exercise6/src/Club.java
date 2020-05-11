@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -22,76 +23,110 @@ public class Club {
         members = new HashMap<>();
     }
 
-    public void makeClubMember(ClubMember member) throws VotesException {
+    public List<String> getDisqualifiedMembers() {
+        List<String>membersList = new ArrayList<>();
+        for(UUID key : disqualifiedMembers.keySet())
+        {
+            membersList.add(members.get(key).toString() + " is disqualified."  + "\n");
+        }
+        return membersList;
+    }
+    public List<String> getAlreadyVoted() {
+        List<String>membersList = new ArrayList<>();
+        for(UUID key : alreadyVoted.keySet())
+        {
+            membersList.add(members.get(key).toString() + " has already voted."  + "\n");
+        }
+        return membersList;
+    }
+    public List<String> getVotes() {
+        List<String>membersList = new ArrayList<>();
+        for(UUID key : votes.keySet())
+        {
+            membersList.add(members.get(key).toString() + " has " + votes.get(key) + " votes."  + "\n");
+        }
+        return membersList;
+    }
+
+    public void makeClubMember(ClubMember member) throws ClubException {
         members.put(member.getId(), member);
         List <ClubMember> arrayMembers = new ArrayList<>(members.values());
         Set <ClubMember> setMembers = new HashSet<>(members.values());
         if(setMembers.size()!=arrayMembers.size()){
             members.remove(member.getId(), member);
-            throw new VotesException("This member already exists.");
+            throw new ClubException("This member already exists.");
         }
     }
-    private Boolean isAlreadyVoted (UUID idMemberVoted){
-        if(alreadyVoted.get(idMemberVoted)){
-            disqualifiedMembers.put(idMemberVoted, true);
+    private Boolean isAlreadyVoted (UUID idVoterMember){
+        if(alreadyVoted.containsKey(idVoterMember)){
+            disqualifiedMembers.put(idVoterMember, true);
             return true;
         }else{
-            alreadyVoted.put(idMemberVoted, true);
+            alreadyVoted.put(idVoterMember, true);
             return false;
         }
     }
-    // I'm not sure if it's okay to make this method because I can directly put disqualifiedMembers.get(id) in the ifclause of addvote
+    // I'm not sure if it's okay to make this method because I can directly put disqualifiedMembers.containsKey(id) in the ifclause of addvote
     private Boolean isDisqualified (UUID idMemberVoted){
-        if(disqualifiedMembers.get(idMemberVoted)){
+        if(disqualifiedMembers.containsKey(idMemberVoted)){
             return true;
         }else
             return false;
     }
     private void subtractVote(UUID idVoterMember){
         if(votes.containsKey(idVoterMember)){
-            votes.replace(idVoterMember, votes.get(idVoterMember) - 1);
+            if(votes.get(idVoterMember) == 1)
+                votes.remove(idVoterMember);
+            else
+                votes.replace(idVoterMember, votes.get(idVoterMember) - 1);
         }
     }
-    private void addVote(UUID idMemberVoted, UUID idVoterMember) throws VotesException {
-        if(this.isAlreadyVoted(idVoterMember)){
-            throw new VotesException("The member has already voted, he will be disqualified from being voted");
-        }else{
-            if(isDisqualified(idMemberVoted)){
-                throw new VotesException("The member you are trying to vote is not qualified to be voted because he tried to vote twice");
-            }else{
-                if(members.containsKey(idMemberVoted)){
-                    if(votes.containsKey(idMemberVoted)){
+    private void addVote(UUID idMemberVoted, UUID idVoterMember) throws ClubException {
+        if(isDisqualified(idMemberVoted)){
+            throw new ClubException("The member you are trying to vote is not qualified to be voted because he tried to vote more than once.");
+        }
+        else{
+            if(members.containsKey(idMemberVoted)){
+                if(this.isAlreadyVoted(idVoterMember)){
+                    throw new ClubException("You have already voted, you will be disqualified from being voted from now on.");
+                }else{
+                   if(votes.containsKey(idMemberVoted))
                         votes.replace(idMemberVoted, votes.get(idMemberVoted) + 1);
-                    }else
+                    else
                         votes.put(idMemberVoted, 1);
-                }else
-                    throw new VotesException("The member you are trying to vote does not exist.");
-            }
+                }
+            }else
+                throw new ClubException("The member you are trying to vote does not exist.");
         }
     }
-    public void votePresident(ClubMember member, UUID enteredId, UUID idMemberVoted) throws VotesException {
+    public void votePresident(ClubMember member, UUID enteredId, UUID idMemberVoted) throws ClubException {
         if(!members.containsKey(member.getId())){
-            throw new VotesException("You are not a member of this club!");
+            throw new ClubException("You are not a member of this club!");
         }else{
             if(member.getId()!=idMemberVoted){
                 this.addVote(idMemberVoted, member.getId());
                 if(enteredId==null || enteredId!=member.getId()){
                     this.subtractVote(member.getId());
-                    throw new VotesException("You will have one less vote because you did not enter your id.");
+                    throw new ClubException("You will have one less vote because you did not enter your id or you enter a wrong id.");
                 }
             }else
-                throw new VotesException("You can not vote yourself!");
+                throw new ClubException("You can not vote yourself!");
         }
     }
-    public void renounceClubMember(ClubMember member){
-        members.remove(member.getId());
+    public Boolean renounceClubMember(ClubMember member){
+        if(members.remove(member.getId()) == null){
+            return false;
+        }else
+            return true;
     }
-    // Being sincere I don't know yet streams but I saw this solution on the internet and I understood it.
-    public Map sortByAlphabetic(){
-        Map mapSorted = members.entrySet()
-                .stream()
-                .sorted(Map.Entry.comparingByValue())
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
-        return mapSorted;
+    // Being sincere I don't know yet streams nor lambda but I saw this solution on the internet and I understood it.
+    public List<String> sortByAlphabetic(){
+        List<String>membersList = new ArrayList<>();
+        for(UUID key : members.keySet())
+        {
+            membersList.add(members.get(key).toString() + "\n");
+        }
+        Collections.sort(membersList);
+        return membersList;
     }
 }

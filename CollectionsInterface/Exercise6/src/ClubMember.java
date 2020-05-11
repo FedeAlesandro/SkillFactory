@@ -42,7 +42,6 @@ public class ClubMember implements Comparable<ClubMember>{
     public String toString() {
         return "Club Member: " +
                 "Name = " + name +
-                ", id = " + id +
                 ", phone = " + phone +
                 ", age = " + age;
     }
