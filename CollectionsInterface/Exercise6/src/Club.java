@@ -119,7 +119,6 @@ public class Club {
         }else
             return true;
     }
-    // Being sincere I don't know yet streams nor lambda but I saw this solution on the internet and I understood it.
     public List<String> sortByAlphabetic(){
         List<String>membersList = new ArrayList<>();
         for(UUID key : members.keySet())
