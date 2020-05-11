@@ -46,7 +46,6 @@ public class Main {
         } catch (ClubException e) {
             System.out.println(e);
         }
-        System.out.println();
 
         //RENOUNCE OF A MEMBER
         if(club.renounceClubMember(cm3)) // if(club.renounceClubMember(cm5)) enters to else clause
@@ -113,7 +112,7 @@ public class Main {
 
         // "The member you are trying to vote is not qualified to be voted because he tried to vote more than once." EXCEPTION
         try {
-            club.votePresident(cm6, cm5.getId(), cm4.getId());
+            club.votePresident(cm6, cm6.getId(), cm4.getId());
         } catch (ClubException e) {
             System.out.println(e);
         }
@@ -137,5 +136,8 @@ public class Main {
         System.out.println();
 
         System.out.println("Members: " + "\n" +  club.sortByAlphabetic());
+        System.out.println();
+
+        System.out.println("Members with the amount of votes: " + "\n" + club.getAmountVotes());
     }
 }

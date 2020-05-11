@@ -40,7 +40,7 @@ public class ClubMember implements Comparable<ClubMember>{
     }
     @Override
     public String toString() {
-        return "Club Member: " +
+        return "\nClub Member: " +
                 "Name = " + name +
                 ", phone = " + phone +
                 ", age = " + age;
