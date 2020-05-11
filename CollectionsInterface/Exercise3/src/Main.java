@@ -1,24 +1,24 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 	
-	public static void removeEvenLenght(ArrayList<String> strings){
-        for(int i = 0; i<strings.size(); i++){
-            int length = strings.get(i).length();
-            if(length % 2 == 0)
-                strings.remove(strings.get(i));
-        }
+	public static void removeEvenLength(List<String> strings){
+	    List<String>aux = new ArrayList<>(strings);
+        for(String string : aux)
+            if(string.length() % 2 == 0)
+                strings.remove(string);
     }
 	
     public static void main(String[] args) {
-        ArrayList<String>strings = new ArrayList<>();
+        List<String>strings = new ArrayList<>();
         strings.add("Federico");
+        strings.add("Javier");
         strings.add("Ernesto");
         strings.add("Jazmin");
         strings.add("Jorge");
-        strings.add("Javier");
-        System.out.println(strings);
-        removeEvenLenght(strings);
+
+        removeEvenLength(strings);
         System.out.println(strings);
     }
 }
