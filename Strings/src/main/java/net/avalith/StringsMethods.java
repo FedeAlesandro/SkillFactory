@@ -110,4 +110,17 @@ public class StringsMethods {
         }
         return characters.toString();
     }
+    // It says that type Boolean and Character must be primitive, is it wrong to use the wrapper?
+    public Boolean verifyString(String string){
+        StringBuilder sb = new StringBuilder(string);
+        Character chr = sb.charAt(0);
+        if(chr.toString().matches("[A-Za-z0-9]")){
+            if(string.matches("[A-Za-z0-9_]+")){ //I repeat this because I didnt find how to add the ' _ ' in the next line regex
+                if(string.matches("[^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S{8,30}$]")){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }
