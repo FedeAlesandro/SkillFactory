@@ -1,5 +1,6 @@
 package org.example;
 
+<<<<<<< HEAD
 import org.example.exercise2.ClassSupplier;
 import org.example.exercise4.IStringFunction;
 import org.example.exercise6.IHelloWorld;
@@ -11,12 +12,15 @@ import java.util.HashMap;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
+=======
+>>>>>>> master
 /**
  * Hello world!
  *
  */
 public class App 
 {
+<<<<<<< HEAD
     public static String helloWorld(IHelloWorld helloWorld){
         return helloWorld.returnVeryOriginalMessage();
     }
@@ -94,5 +98,10 @@ public class App
         print(()-> System.out.println("Goodbye world!"));
         printCelToFar(celsius -> System.out.println("C° = " + celsius + ", F° = " + ((celsius*9/5)+32)), 30);
         System.out.println(sum((num1, num2) -> num1+num2, 4, 6));
+=======
+    public static void main( String[] args )
+    {
+        System.out.println( "Hello World!" );
+>>>>>>> master
     }
 }
