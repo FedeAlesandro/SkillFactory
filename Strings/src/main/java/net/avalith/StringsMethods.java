@@ -1,6 +1,8 @@
 package net.avalith;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class StringsMethods {
@@ -44,9 +46,9 @@ public class StringsMethods {
                 romanNext = stringBuilder.charAt(i+1);
             Integer value = value(roman);
             Integer valueNext = value(romanNext);
-
-            if(value<valueNext)
-                value = (-value);
+            if(valueNext != null)
+                if(value<valueNext)
+                    value = (-value);
             completeValue += value;
         }
         return completeValue;
@@ -66,6 +68,7 @@ public class StringsMethods {
         }
         return stringReturned;
     }
+    // It says that type Integer and Character must be primitive, is it wrong to use the wrapper?
     public String countDiferentCaracters(String string){
         StringBuilder stringBuilder = new StringBuilder(string);
         String aux = "";
@@ -86,5 +89,25 @@ public class StringsMethods {
             }
         }
         return "Digits: "+ digits + ", letters: " + letters + ", spaces: " + spaces;
+    }
+    public String caesarCipher(String string){
+        StringBuilder sb = new StringBuilder(string);
+        List<Character>alphabet = new ArrayList<>();
+        StringBuilder characters = new StringBuilder("");
+        int index = -1;
+
+        for(int i = 0; i < 26; i++){
+            alphabet.add((char)(97 + i));
+            if(97+i == 110)
+                alphabet.add('ñ');
+        }
+        for (int i = 0; i<sb.length(); i++){
+            index = alphabet.indexOf(sb.charAt(i));
+            if(index==26)
+                characters.append(alphabet.get(0));
+            else
+                characters.append(alphabet.get(index+1));
+        }
+        return characters.toString();
     }
 }
