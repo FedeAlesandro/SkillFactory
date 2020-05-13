@@ -116,7 +116,7 @@ public class StringsMethods {
         Character chr = sb.charAt(0);
         if(chr.toString().matches("[A-Za-z0-9]")){
             if(string.matches("[A-Za-z0-9_]+")){ //I repeat this because I didnt find how to add the ' _ ' in the next line regex
-                if(string.matches("[^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S{8,30}$]")){
+                if(string.matches("^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S{8,30}$")){
                     return true;
                 }
             }
