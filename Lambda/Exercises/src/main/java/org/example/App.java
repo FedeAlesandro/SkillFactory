@@ -29,7 +29,7 @@ public class App
     public static void main( String[] args )
     {
         /*1) Crear un Function que devuelva el módulo a elección de un numero entero.*/
-        Function<Integer, String> function = number -> number.toString();
+        Function<Integer, Double> function = number -> number % 2d;
         System.out.println(function.apply(4));
 
         /*2) Utilizar una interfaz Supplier en un método de una clase que tenga como atributo una fecha
