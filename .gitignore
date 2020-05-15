@@ -243,7 +243,10 @@ gradle-app.setting
 ### Gradle Patch ###
 **/build/
 
+BuilderTest/
+TEORIA/
 ReadMePractice/
 VeterinariaDB/
+
 
 # End of https://www.gitignore.io/api/java,gradle,maven,eclipse,intellij
