@@ -1,4 +1,4 @@
-package org.example.service;
+package org.example.repository;
 
 import org.example.connection.MyConnection;
 import org.example.model.Product;
@@ -12,13 +12,13 @@ import java.util.List;
 
 public class CRUDProduct {
 
-    private MyConnection connection;
+    private Connection conn;
 
     public CRUDProduct(){
-        this.connection = new MyConnection();
+        this.conn = MyConnection.getConnection();
     }
     public Boolean addProduct(Product product){
-        Connection conn = connection.getConnection();
+        Boolean executeBoolean = false;
         try {
             String query = "insert into products(name, price, brand, unit, quantity, discount) values (?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = conn.prepareStatement(query);
@@ -28,15 +28,14 @@ public class CRUDProduct {
             preparedStatement.setString(4, product.getUnit());
             preparedStatement.setInt(5, product.getQuantity());
             preparedStatement.setDouble(6, product.getDiscount());
-            Boolean executeBoolean = preparedStatement.execute();
-            return executeBoolean;
+            executeBoolean = preparedStatement.execute();
+            preparedStatement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
+        return executeBoolean;
     }
     public Integer updateProduct(Product product, Integer idProduct){
-        Connection conn = connection.getConnection();
         try {
             String query = "update products set name = ?, price = ?, brand = ?, unit = ?, quantity = ?, discount = ? where id = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(query);
@@ -48,6 +47,7 @@ public class CRUDProduct {
             preparedStatement.setDouble(6, product.getDiscount());
             preparedStatement.setInt(7, idProduct);
             Integer rowsAffected = preparedStatement.executeUpdate();
+            preparedStatement.close();
             return rowsAffected;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -55,20 +55,19 @@ public class CRUDProduct {
         return 0;
     }
     public Boolean deleteProduct(Integer idProduct){
-        Connection conn = connection.getConnection();
+        Boolean executeBoolean = false;
         try {
             String query = "delete from products where id = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(query);
             preparedStatement.setInt(1, idProduct);
-            Boolean executeBoolean = preparedStatement.execute();
-            return executeBoolean;
+            executeBoolean = preparedStatement.execute();
+            preparedStatement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
+        return executeBoolean;
     }
     public List<Product> getProducts(){
-        Connection conn = connection.getConnection();
         List<Product>products = new ArrayList<>();
         try {
             String query = "select * from products";
@@ -86,13 +85,14 @@ public class CRUDProduct {
                                 .build()
                 );
             }
+            preparedStatement.close();
+            resultSet.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return products;
     }
     public Product getProductById(Integer idProduct){
-        Connection conn = connection.getConnection();
         Product product = null;
         try {
             String query = "select * from products where id = ?";
@@ -108,6 +108,8 @@ public class CRUDProduct {
                     .quantity(resultSet.getInt("quantity"))
                     .discount(resultSet.getDouble("discount"))
                     .build();
+            preparedStatement.close();
+            resultSet.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -2,7 +2,7 @@ package org.example;
 
 import org.example.connection.MyConnection;
 import org.example.model.Product;
-import org.example.service.CRUDProduct;
+import org.example.repository.CRUDProduct;
 
 import java.math.BigDecimal;
 
@@ -57,5 +57,7 @@ public class App
         System.out.println(crud.getProducts());
         // GET BY ID
         System.out.println(crud.getProductById(2));
+
+        MyConnection.close();
     }
 }
