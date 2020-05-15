@@ -243,6 +243,8 @@ gradle-app.setting
 ### Gradle Patch ###
 **/build/
 
+BuilderTest/
+TEORIA/
 ReadMePractice/
 VeterinariaDB/
 
