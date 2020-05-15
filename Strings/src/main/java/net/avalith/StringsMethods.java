@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class StringsMethods {
 
@@ -24,14 +25,11 @@ public class StringsMethods {
         string = string.replaceAll("[^a-zA-Z]", "");
         StringBuilder stringBuilder = new StringBuilder(string);
         String aux = (stringBuilder.reverse()).toString();
-        if(aux.equalsIgnoreCase(string))
-            return true;
-        else
-            return false;
+        return (aux.equalsIgnoreCase(string));
     }
     private Integer value(Character r)
     {
-        return romanValues.get(r);
+        return Optional.ofNullable(romanValues.get(r)).orElse(0);
     }
     public Integer romanNumberToInteger(String string){
         string = string.toUpperCase();
