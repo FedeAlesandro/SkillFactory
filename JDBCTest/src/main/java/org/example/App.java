@@ -10,7 +10,6 @@ public class App
 {
     public static void main( String[] args )
     {
-        // PREGUNTAR POR EL CLOSE, PORQUE SI LO HAGO NO PUEDO SEGUIR EJECUTANDO OTRAS QUERIES
         CRUDProduct crud = new CRUDProduct();
 
         //INSERTS
