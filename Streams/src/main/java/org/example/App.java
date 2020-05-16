@@ -20,7 +20,7 @@ public class App
         System.out.println(strings);
 
         // 2) Escribir un método, que dado un String cuente diferentes tipos de caracteres. Deberá imprimir el número de letras, dígitos y espacios en blanco de la cadena.
-        System.out.println(stringsMethods.countDifferentCharacters("Soy Independiente, aunque no gano la libertadores\n" + "desde 1985, sigo siendo el máximo campeón con 7 copas"));
+        stringsMethods.countDifferentCharacters("Soy Independiente, aunque no gano la libertadores\n" + "desde 1985, sigo siendo el máximo campeón con 7 copas");
 
         // 3)Realizar un método, el cual reciba un String y realice el cifrado Caesar. Se debe cambiar cada letra por la siguiente.
         System.out.println(stringsMethods.caesarCipher("adegnzxi"));
