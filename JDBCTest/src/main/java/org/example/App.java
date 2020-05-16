@@ -2,7 +2,7 @@ package org.example;
 
 import org.example.connection.MyConnection;
 import org.example.model.Product;
-import org.example.repository.CRUDProduct;
+import org.example.repository.ProductRepository;
 
 import java.math.BigDecimal;
 
@@ -10,7 +10,7 @@ public class App
 {
     public static void main( String[] args )
     {
-        CRUDProduct crud = new CRUDProduct();
+        ProductRepository productRepository = new ProductRepository();
 
         //INSERTS
         Product product1 = new Product.Builder()
@@ -37,9 +37,9 @@ public class App
                 .quantity(100)
                 .discount(0.5d)
                 .build();
-        crud.addProduct(product1);
-        crud.addProduct(product2);
-        crud.addProduct(product3);
+        productRepository.add(product1);
+        productRepository.add(product2);
+        productRepository.add(product3);
         // UPDATE
         Product product4 = new Product.Builder()
                 .name("Hamburguesa")
@@ -49,13 +49,13 @@ public class App
                 .quantity(40)
                 .discount(0.4d)
                 .build();
-        crud.updateProduct(product4, 1);
+        productRepository.update(product4, 1);
         // DELETE
-        crud.deleteProduct(3);
+        productRepository.delete(3);
         // GET ALL
-        System.out.println(crud.getProducts());
+        System.out.println(productRepository.getAll());
         // GET BY ID
-        System.out.println(crud.getProductById(2));
+        System.out.println(productRepository.getById(2));
 
         MyConnection.close();
     }

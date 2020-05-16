@@ -10,14 +10,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CRUDProduct {
+public class ProductRepository {
 
     private Connection conn;
 
-    public CRUDProduct(){
+    public ProductRepository(){
         this.conn = MyConnection.getConnection();
     }
-    public Boolean addProduct(Product product){
+    public Boolean add(Product product){
         Boolean executeBoolean = false;
         try {
             String query = "insert into products(name, price, brand, unit, quantity, discount) values (?, ?, ?, ?, ?, ?)";
@@ -35,7 +35,7 @@ public class CRUDProduct {
         }
         return executeBoolean;
     }
-    public Integer updateProduct(Product product, Integer idProduct){
+    public Integer update(Product product, Integer idProduct){
         try {
             String query = "update products set name = ?, price = ?, brand = ?, unit = ?, quantity = ?, discount = ? where id = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(query);
@@ -54,7 +54,7 @@ public class CRUDProduct {
         }
         return 0;
     }
-    public Boolean deleteProduct(Integer idProduct){
+    public Boolean delete(Integer idProduct){
         Boolean executeBoolean = false;
         try {
             String query = "delete from products where id = ?";
@@ -67,7 +67,7 @@ public class CRUDProduct {
         }
         return executeBoolean;
     }
-    public List<Product> getProducts(){
+    public List<Product> getAll(){
         List<Product>products = new ArrayList<>();
         try {
             String query = "select * from products";
@@ -92,7 +92,7 @@ public class CRUDProduct {
         }
         return products;
     }
-    public Product getProductById(Integer idProduct){
+    public Product getById(Integer idProduct){
         Product product = null;
         try {
             String query = "select * from products where id = ?";
