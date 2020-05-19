@@ -12,7 +12,10 @@ public class BankAccount {
         this.balance = 500000d;
     }
 
-    // Hice el get y el set synchronized porque puede ser que un hilo quiera hacer un get y cuando lo haga otro modifique el valor,
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+    // Hice el get y el set de balance synchronized porque puede ser que un hilo quiera hacer un get y cuando lo haga otro modifique el valor,
     // entonces vas a trabajar con un dato no actualizado.
     public synchronized Double getBalance(){
         return balance;
