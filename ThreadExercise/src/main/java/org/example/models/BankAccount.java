@@ -12,19 +12,24 @@ public class BankAccount {
         this.balance = 500000d;
     }
 
-    public Double getBalance(){
+    // Hice el get y el set synchronized porque puede ser que un hilo quiera hacer un get y cuando lo haga otro modifique el valor,
+    // entonces vas a trabajar con un dato no actualizado.
+    public synchronized Double getBalance(){
         return balance;
     }
-    public void check(Double amount) throws NotFundsExceptions {
-        if(balance<amount)
+    public synchronized void setBalance(Double balance){
+        this.balance = balance;
+    }
+    public synchronized void check(Double amount) throws NotFundsExceptions {
+        if(getBalance()<amount)
             throw new NotFundsExceptions("You can not withdraw that amount because you do not have enough funds");
     }
     public synchronized void deposit(Double amount){
-        this.balance+=amount;
+        setBalance(getBalance()+amount);
     }
     public synchronized Double withdraw(Double amount) throws NotFundsExceptions {
         this.check(amount);
-        balance-=amount;
+        setBalance(getBalance()-amount);
         return amount;
     }
 }
