@@ -19,10 +19,10 @@ public class BankAccount {
         if(balance<amount)
             throw new NotFundsExceptions("You can not withdraw that amount because you do not have enough funds");
     }
-    public void deposit(Double amount){
+    public synchronized void deposit(Double amount){
         this.balance+=amount;
     }
-    public Double withdraw(Double amount) throws NotFundsExceptions {
+    public synchronized Double withdraw(Double amount) throws NotFundsExceptions {
         this.check(amount);
         balance-=amount;
         return amount;
