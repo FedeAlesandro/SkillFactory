@@ -247,5 +247,6 @@ BuilderTest/
 TEORIA/
 ReadMePractice/
 VeterinariaDB/
+ExceptionExercise/
 
 # End of https://www.gitignore.io/api/java,gradle,maven,eclipse,intellij
