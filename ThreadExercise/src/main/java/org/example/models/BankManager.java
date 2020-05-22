@@ -1,10 +1,9 @@
 package org.example.models;
 
-import java.util.concurrent.Callable;
+import org.example.exceptions.MakeBalanceException;
 
-public class BankManager implements Callable {
+public class BankManager implements Runnable {
 
-    private Double balance;
     private BankAccount bankAccount;
 
     public BankManager(BankAccount bankAccount) {
@@ -12,8 +11,12 @@ public class BankManager implements Callable {
     }
 
     @Override
-    public Object call() throws Exception {
-        balance = bankAccount.getBalance();
-        return this.balance;
+    public void run() {
+        Thread.currentThread().setName("BankManager");
+        try {
+            System.out.println(bankAccount.getBalance());
+        } catch (MakeBalanceException | InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

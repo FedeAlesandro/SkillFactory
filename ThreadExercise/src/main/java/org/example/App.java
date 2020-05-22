@@ -1,13 +1,9 @@
 package org.example;
 
+import org.example.exceptions.MakeBalanceException;
 import org.example.models.BankAccount;
 import org.example.models.BankManager;
 import org.example.models.UserThread;
-
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 public class App 
 {
@@ -18,20 +14,22 @@ public class App
         userThread1.start();
         Thread userThread2 = new Thread(new UserThread(12000d, 200000d, bankAccount));
         userThread2.start();
+
         try {
             Thread.sleep(50);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println(bankAccount.getBalance());
-
-        ExecutorService executorService = Executors.newFixedThreadPool(1); //Preg newSingleThreadExecutor vs newFixedThreadPool(1)
-        Future<Double> balance = executorService.submit(new BankManager(bankAccount));
-        executorService.shutdown();
         try {
-            System.out.println(balance.get());
-        } catch (InterruptedException | ExecutionException e) {
+            System.out.println(bankAccount.getBalance());
+        } catch (MakeBalanceException | InterruptedException e) {
             e.printStackTrace();
         }
+        Thread managerThread = new Thread(new BankManager(bankAccount));
+        managerThread.start();
+
+        //Im not sure that the 5) works fine, I dont understand very well if Im doing right
+
+        
     }
 }

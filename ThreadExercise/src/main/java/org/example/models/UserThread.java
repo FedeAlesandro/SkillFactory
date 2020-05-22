@@ -1,6 +1,7 @@
 package org.example.models;
 
-import org.example.exceptions.NotFundsExceptions;
+import org.example.exceptions.MakeBalanceException;
+import org.example.exceptions.NotFundsException;
 
 public class UserThread implements Runnable{
 
@@ -16,11 +17,15 @@ public class UserThread implements Runnable{
 
     @Override
     public void run() {
-        bankAccount.deposit(deposit);
+        try {
+            bankAccount.deposit(deposit);
+        } catch (MakeBalanceException | InterruptedException e) {
+            e.printStackTrace();
+        }
         try {
             bankAccount.withdraw(withdraw);
-        } catch (NotFundsExceptions notFundsExceptions) {
-            notFundsExceptions.printStackTrace();
+        } catch (NotFundsException | MakeBalanceException | InterruptedException notFundsException) {
+            notFundsException.printStackTrace();
         }
     }
 }
