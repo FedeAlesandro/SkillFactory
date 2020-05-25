@@ -248,5 +248,7 @@ TEORIA/
 ReadMePractice/
 VeterinariaDB/
 ExceptionExercise/
+Jackson/
+DesignPatterns/
 
 # End of https://www.gitignore.io/api/java,gradle,maven,eclipse,intellij
