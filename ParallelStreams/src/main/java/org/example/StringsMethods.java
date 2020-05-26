@@ -19,8 +19,8 @@ public class StringsMethods {
         Map<CharType, Long>characters = string.chars()
                 .parallel()
                 .mapToObj(chr -> (char)chr)
+                .filter(chr -> (CharType.getType(chr)!=CharType.Another))
                 .collect(Collectors.groupingBy(CharType::getType, Collectors.counting()));
-        characters.remove(CharType.Another);
         System.out.println(characters);
     }
 
