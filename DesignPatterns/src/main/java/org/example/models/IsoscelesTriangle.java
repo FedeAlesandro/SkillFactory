@@ -13,4 +13,13 @@ public class IsoscelesTriangle implements ITriangle {
         this.side2 = side2;
         this.side3 = side3;
     }
+
+    @Override
+    public String toString() {
+        return "IsoscelesTriangle{" +
+                "side1=" + side1 +
+                ", side2=" + side2 +
+                ", side3=" + side3 +
+                '}';
+    }
 }

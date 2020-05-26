@@ -24,28 +24,32 @@ public class App
     public static void main( String[] args )
     {
         //Strategy Pattern
-        /*Employee director = new Employee("Federico", EmployeeCategory.director, 45000d);
+        Employee director = new Employee("Federico", EmployeeCategory.director, 45000d);
         Employee administrative = new Employee("Pepe", EmployeeCategory.administrative, 35000d);
         Employee operator = new Employee("Juan", EmployeeCategory.operator, 25000d);
 
         director.changeSalary();
         administrative.changeSalary();
-        operator.changeSalary();*/
+        operator.changeSalary();
+
+        System.out.println(director);
+        System.out.println(administrative);
+        System.out.println(operator);
 
         //Factory Method
-        /*TriangleCreator triangleCreator = new TriangleCreator();
-
-        ITriangle isosceles = triangleCreator.createTringle(10d, 15d, 15d);
-        System.out.println(isosceles);
+        TriangleCreator triangleCreator = new TriangleCreator();
 
         ITriangle equilateral = triangleCreator.createTringle(10d, 10d, 10d);
         System.out.println(equilateral);
+
+        ITriangle isosceles = triangleCreator.createTringle(10d, 15d, 15d);
+        System.out.println(isosceles);
         
         ITriangle scalene = triangleCreator.createTringle(10d, 15d, 20d);
-        System.out.println(scalene);*/
+        System.out.println(scalene);
 
         //Abstract Factory
-        /*ClientTvColor blueLCD = new ClientTvColor(new BlueLCDFactory());
+        ClientTvColor blueLCD = new ClientTvColor(new BlueLCDFactory());
         blueLCD.createColor();
         blueLCD.createTv();
 
@@ -54,10 +58,10 @@ public class App
         yellowPlasma.createTv();
 
         System.out.println(blueLCD);
-        System.out.println(yellowPlasma);*/
+        System.out.println(yellowPlasma);
 
         //Observer Pattern
-        /*Book book1 = new Book("El sobrino del mago");
+        Book book1 = new Book("El sobrino del mago");
         Book book2 = new Book("Fablehaven");
         Book book3 = new Book("Luces del norte");
 
@@ -69,6 +73,6 @@ public class App
         library.lendBook(book2);
         book2.setBookState(BookState.bad);
 
-        library.receiveBook(book2);*/
+        library.receiveBook(book2);
     }
 }

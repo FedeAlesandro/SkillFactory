@@ -41,4 +41,13 @@ public class Employee {
     public void changeSalary(){
         setSalary(salaryChange.applyChange(getSalary()));
     }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "name='" + name + '\'' +
+                ", category=" + category +
+                ", salary=" + salary +
+                '}';
+    }
 }

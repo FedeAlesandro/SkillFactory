@@ -9,10 +9,12 @@ public class Library {
 
     private String name;
     private Set <Book> books; // I know that a library can have more than one book repeated in the real life
+    private BookAlarm bookAlarm;
 
     public Library(String name) {
         this.name = name;
         this.books = new HashSet<>();
+        this.bookAlarm = new BookAlarm();
     }
 
     public Set<Book> getBooks() {
@@ -28,7 +30,6 @@ public class Library {
     }
 
     public Book receiveBook(Book book){
-        BookAlarm bookAlarm = new BookAlarm();
         if(book.getBookState().equals(BookState.bad))
         {
             new Administration(bookAlarm);
