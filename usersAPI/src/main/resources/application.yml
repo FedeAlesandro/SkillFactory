@@ -1,0 +1,19 @@
+#spring:
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/
+#    username: root
+#    password:
+#  jpa:
+#    hibernate:
+#      format_sql: true
+#    show-sql: true
+
+spring:
+  h2:
+    console:
+      enabled: true
+      path: /usersAPI
+  jpa:
+    show-sql: true
+
+country_code: ARG
